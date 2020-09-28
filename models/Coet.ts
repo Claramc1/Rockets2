@@ -1,16 +1,22 @@
 class Coets{
     codi:string;
-    propulsors:number;
-    maxPot:number[];
-    currentPot:number[];
+    numPropulsors:number;
+    propulsors:Propulsor[]=new Array();
     
-    constructor(codi:string,propulsors:number,maxPot:number[],currentPot:number[]){
+    constructor(codi:string,numPropulsors:number){
         this.codi=codi;
-        this.propulsors=propulsors;
-        this.maxPot=maxPot;
-        this.currentPot=currentPot;
+        this.numPropulsors=numPropulsors;
     }
 
+    addPropulsor(propulsor:Propulsor):void{
+        this.propulsors.push(propulsor);
+    }
+
+
+
+
+
+/*
     accelerar(){
         let i:number;
         for(i=0;i<this.currentPot.length;i++){
@@ -41,6 +47,6 @@ class Coets{
         var potencia="";
         potencia = potencia + "El coet "+ this.codi +" té una potencia actual de "+ this.currentPot + "<br>"+ "<br>";
         document.getElementById("resultatPotencia").innerHTML = potencia;
-    }
+    }*/
     
 }
