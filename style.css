@@ -1,0 +1,53 @@
+.row {
+    display: flex;
+}
+.column {
+    flex: 50%;
+}
+
+.botoCrear{
+    background-color: #D0D102;
+}
+.botoIncrem{
+    background-color: #01A4A4;
+}
+.botoFre{
+    background-color: #00A1CB;
+}
+.botoInfo{
+    background-color: #61AE24;
+}
+#infoTots{
+    background-color: #F18D05;
+    position: absolute;
+    left: 35%;
+}
+
+.button {
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 10px;
+} 
+
+#botons1, #botons2{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#resultatsHTML{
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+
+}

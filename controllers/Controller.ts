@@ -1,27 +1,44 @@
 let coet: Coets;
 var llistaCoets: any = [];
 
-//let coet1:any;
-//let coet2:any;
-//coet1 = new Coets("32WESSDS", 3, [10,30,80], [0,0,0]);
-//llistaCoets.push(coet1);
-//coet2 = new Coets("LDSFJA32", 6, [30,40,50,50,30,10], [0,0,0,0,0,0]);
-//llistaCoets.push(coet2);
-//console.log(llistaCoets);
+let coet1:any;
+let coet2:any;
+coet1 = new Coets("32WESSDS", 3);
+let propulsors1:any;
+propulsors1 = new Propulsor ([10,30,80],[0,0,0],[0,0,0]);
+coet1.addPropulsor(propulsors1);
+llistaCoets.push(coet1);
+
+coet2 = new Coets("LDSFJA32", 6);
+let propulsors2:any;
+propulsors2 = new Propulsor ([30,40,50,50,30,10], [0,0,0,0,0,0],[0,0,0,0,0,0]);
+coet2.addPropulsor(propulsors2);
+llistaCoets.push(coet2);
+console.log(llistaCoets);
 
 var result ="";
 let i:number;
 
-function crear(){
-    let codi = prompt("Codi del coet:");
+
+/*
+function crear(numero){
+    var codi = prompt("Codi del coet:");
     var numPropulsors = prompt("Introdueix el nombre de propulsors de "+ codi + ":");
-    let coet=new Coets(codi,numPropulsors);
-    llistaCoets.push(coet);
-    console.log(coet);
-    crearPropulsors();
+        if(codi == null||numPropulsors == null){
+        let errorClass = <HTMLInputElement>document.getElementById("resultat");
+        errorClass.innerHTML = "Sisplau, revisa els valors introduïts."
+
+        }else{
+         let coet = "coet"+numero; ///////////////////////Aquí és on falla. Al passar-ho de Javascript a Typescript, m'ho escriu com coet_1 i no com coet1. (Perquè falli,cal afegir a la funció d'onclick a l'HTML el valor que li passem)
+        coet=new Coets(codi,parseInt(numPropulsors));
+        llistaCoets.push(coet);
+        console.log(coet);
+        crearPropulsors();
+        }
 
 
-function crearPropulsors(){
+function crearPropulsors(){ //recorre bucle per saber al coet que correspon (cal pasar una variable tipo codi)
+    let coetEspecific = llistaCoets[(llistaCoets.length-1)];
     let maxPot =[];
     for(i=0;i<parseInt(numPropulsors);i++){
         let maxPotEach:number;
@@ -30,47 +47,63 @@ function crearPropulsors(){
     }
 
     let currentPot=[];
-    for(i=0;i<numPropulsors;i++){
+    for(i=0;i<parseInt(numPropulsors);i++){
         currentPot.push(0);
     }
-    console.log(coet.propulsors);
-    coet.addPropulsor(new Propulsor(maxPot,currentPot));
- 
+    let minPot=[];
+    for(i=0;i<parseInt(numPropulsors);i++){
+        minPot.push(0);
+    }
+    coetEspecific.addPropulsor(new Propulsor(maxPot,currentPot,minPot));
 }
-
-
-
-    /*coet1 = new Coets(codi, propulsors, maxPot, currentPot);
-    llistaCoets.push(coet1);*/
-    console.log(llistaCoets);
+console.log(llistaCoets);
 }
-
-
-/*
-
+ */
 
 
 function infoMaxPot(){
+    var result = "";
+    let j;
     for(i=0;i<llistaCoets.length;i++){
-        result = result + "El coet "+ llistaCoets[i].codi +" té "+ llistaCoets[i].propulsors +" propulsors d'una potència màxima de "+ llistaCoets[i].maxPot +"<br>"+ "<br>";
-        document.getElementById("resultat").innerHTML = result;
+        for (j=0;j<llistaCoets[i].propulsorsArray.length;j++){
+        result = result + "El coet "+ llistaCoets[i].codi +" té "+ llistaCoets[i].numPropulsors +" propulsors d'una potència màxima de "+ llistaCoets[i].propulsorsArray[j].maxPot +"<br>"+ "<br>";
+        document.getElementById("resultat").innerHTML = result;}
     }
 }
-
 function info(){
     var potencia="";
+    let j;
     for(i=0;i<llistaCoets.length;i++){
-        potencia = potencia + "El coet "+ llistaCoets[i].codi +" té una potencia actual de "+ llistaCoets[i].currentPot + "<br>"+ "<br>";
+        for (j=0;j<llistaCoets[i].propulsorsArray.length;j++){
+        potencia = potencia + "El coet "+ llistaCoets[i].codi +" té una potencia actual de "+ llistaCoets[i].propulsorsArray[j].currentPot + "<br>"+ "<br>";
         document.getElementById("resultatPotencia").innerHTML = potencia;
-    }
+    }}
     infoMaxPot();
 }
-*/
+
+function accelerar1(){
+coet1.accelerar();
+}
+
+function accelerar2(){
+    coet2.accelerar();
+}
+
+function frenar1(){
+    coet1.frenar();
+}
+
+function frenar2(){
+    coet2.frenar();
+}
+
+function informacio1(){
+    coet1.veureInfo();
+}
+function informacio2(){
+    coet2.veureInfo();
+}
 
 
-
-//coet1.accelerar();
-//coet1.frenar();
-console.log(llistaCoets);
 
 // cal agafar per l'id el num del  coet

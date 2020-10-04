@@ -1,7 +1,8 @@
 class Coets{
     codi:string;
     numPropulsors:number;
-    propulsors:Propulsor[]=new Array();
+    propulsorsArray:Propulsor[]=new Array();
+
     
     constructor(codi:string,numPropulsors:number){
         this.codi=codi;
@@ -9,44 +10,76 @@ class Coets{
     }
 
     addPropulsor(propulsor:Propulsor):void{
-        this.propulsors.push(propulsor);
+        this.propulsorsArray.push(propulsor);
     }
 
 
-
-
-
-/*
     accelerar(){
+        document.getElementById("resultat").innerHTML ="";
+        document.getElementById("resultatPotencia").innerHTML ="";
+        document.getElementById("resultatPotenciaTots").innerHTML ="";
         let i:number;
-        for(i=0;i<this.currentPot.length;i++){
-            if(((this.currentPot[i])+10)<=this.maxPot[i]){
-                this.currentPot[i] = this.currentPot[i]+10;
+        let j: number;
+        for(i=0;i<this.propulsorsArray.length;i++){
+            for(j=0;j<this.propulsorsArray[i].currentPot.length;j++){
+            if((this.propulsorsArray[i].currentPot[j])<(this.propulsorsArray[i].maxPot[j])){
+                this.propulsorsArray[i].currentPot[j] += 10;
             }
-        }
-        console.log(this.currentPot);
+        
+        console.log(this.propulsorsArray);
         var potencia="";
-        potencia = potencia + "El coet "+ this.codi +" té una potencia actual de "+ this.currentPot + "<br>"+ "<br>";
-        document.getElementById("resultatPotencia").innerHTML = potencia;
+        potencia = potencia + "El coet "+ this.codi +" té una potencia actual de "+ this.propulsorsArray[i].currentPot + "<br>"+ "<br>";
+        document.getElementById("resultatPotencia").innerHTML = potencia;}
     }
+}
 
     frenar(){
-        let j:number;
-        for(j=0;j<this.currentPot.length;j++){
-            if(((this.currentPot[j])-10)>=0){
-                this.currentPot[j] = this.currentPot[j]-10;
+        document.getElementById("resultat").innerHTML ="";
+        document.getElementById("resultatPotencia").innerHTML ="";
+        document.getElementById("resultatPotenciaTots").innerHTML ="";
+        let i:number;
+        let j: number;
+        for(i=0;i<this.propulsorsArray.length;i++){
+            for(j=0;j<this.propulsorsArray[i].currentPot.length;j++){
+            if((this.propulsorsArray[i].currentPot[j])>(this.propulsorsArray[i].minPot[j])){
+                this.propulsorsArray[i].currentPot[j] -= 10;
             }
-        }
-        console.log(this.currentPot);
+        
+        console.log(this.propulsorsArray);
         var potencia="";
-        potencia = potencia + "El coet "+ this.codi +" té una potencia actual de "+ this.currentPot + "<br>"+ "<br>";
-        document.getElementById("resultatPotencia").innerHTML = potencia;
+        potencia = potencia + "El coet "+ this.codi +" té una potencia actual de "+ this.propulsorsArray[i].currentPot + "<br>"+ "<br>";
+        document.getElementById("resultatPotencia").innerHTML = potencia;}
     }
+}
+
+
 
     veureInfo(){
+        document.getElementById("resultat").innerHTML ="";
+        document.getElementById("resultatPotencia").innerHTML ="";
+        document.getElementById("resultatPotenciaTots").innerHTML ="";
+        let i:number;
+        let j: number;
+        for(i=0;i<this.propulsorsArray.length;i++){
+            console.log(this.propulsorsArray);
+            var potencia="";
+            potencia = potencia + "El coet "+ this.codi +" té una potencia actual de "+ this.propulsorsArray[i].currentPot + "<br>"+ "<br>";
+            document.getElementById("resultatPotencia").innerHTML = potencia;
+            }
+        
+
+    }
+    }
+    /*veureInfo(){
+        let i:number;
+        let j:number;
         var potencia="";
-        potencia = potencia + "El coet "+ this.codi +" té una potencia actual de "+ this.currentPot + "<br>"+ "<br>";
-        document.getElementById("resultatPotencia").innerHTML = potencia;
+        var actualPot;
+        for(i=0;i<this.propulsorsArray.length;i++){
+            for(j=0;j<this.propulsorsArray[i].currentPot.length;j++){  
+                actualPot += this.propulsorsArray[i].currentPot[j];}
+        potencia = potencia + "El coet "+ this.codi +" té una potencia actual de "+ actualPot + "<br>"+ "<br>";
+        document.getElementById("resultatPotencia").innerHTML = potencia;}
     }*/
     
 }
