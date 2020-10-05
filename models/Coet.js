@@ -9,53 +9,46 @@ var Coets = /** @class */ (function () {
         this.propulsorsArray.push(propulsor);
     };
     Coets.prototype.accelerar = function () {
-        document.getElementById("resultat").innerHTML = "";
-        document.getElementById("resultatPotencia").innerHTML = "";
-        document.getElementById("resultatPotenciaTots").innerHTML = "";
+        var potencia;
         var i;
         var j;
         for (i = 0; i < this.propulsorsArray.length; i++) {
             for (j = 0; j < this.propulsorsArray[i].currentPot.length; j++) {
-                if ((this.propulsorsArray[i].currentPot[j]) < (this.propulsorsArray[i].maxPot[j])) {
+                if (this.propulsorsArray[i].currentPot[j] < this.propulsorsArray[i].maxPot[j]) {
                     this.propulsorsArray[i].currentPot[j] += 10;
                 }
                 console.log(this.propulsorsArray);
-                var potencia = "";
+                potencia = "";
                 potencia = potencia + "El coet " + this.codi + " té una potencia actual de " + this.propulsorsArray[i].currentPot + "<br>" + "<br>";
-                document.getElementById("resultatPotencia").innerHTML = potencia;
             }
         }
+        return potencia; //El html en controller
     };
     Coets.prototype.frenar = function () {
-        document.getElementById("resultat").innerHTML = "";
-        document.getElementById("resultatPotencia").innerHTML = "";
-        document.getElementById("resultatPotenciaTots").innerHTML = "";
+        var potencia;
         var i;
         var j;
         for (i = 0; i < this.propulsorsArray.length; i++) {
             for (j = 0; j < this.propulsorsArray[i].currentPot.length; j++) {
-                if ((this.propulsorsArray[i].currentPot[j]) > (this.propulsorsArray[i].minPot[j])) {
+                if (this.propulsorsArray[i].currentPot[j] > this.propulsorsArray[i].minPot[j]) {
                     this.propulsorsArray[i].currentPot[j] -= 10;
                 }
                 console.log(this.propulsorsArray);
-                var potencia = "";
+                potencia = "";
                 potencia = potencia + "El coet " + this.codi + " té una potencia actual de " + this.propulsorsArray[i].currentPot + "<br>" + "<br>";
-                document.getElementById("resultatPotencia").innerHTML = potencia;
             }
         }
+        return potencia;
     };
     Coets.prototype.veureInfo = function () {
-        document.getElementById("resultat").innerHTML = "";
-        document.getElementById("resultatPotencia").innerHTML = "";
-        document.getElementById("resultatPotenciaTots").innerHTML = "";
+        var potencia;
         var i;
-        var j;
         for (i = 0; i < this.propulsorsArray.length; i++) {
             console.log(this.propulsorsArray);
-            var potencia = "";
+            potencia = "";
             potencia = potencia + "El coet " + this.codi + " té una potencia actual de " + this.propulsorsArray[i].currentPot + "<br>" + "<br>";
-            document.getElementById("resultatPotencia").innerHTML = potencia;
         }
+        return potencia;
     };
     return Coets;
 }());

@@ -3,58 +3,55 @@ var coet;
 var llistaCoets = [];
 var coet1;
 var coet2;
-coet1 = new Coets("32WESSDS", 3);
-var propulsors1;
+/*coet1 = new Coets("32WESSDS", 3);
+let propulsors1: any;
 propulsors1 = new Propulsor([10, 30, 80], [0, 0, 0], [0, 0, 0]);
 coet1.addPropulsor(propulsors1);
 llistaCoets.push(coet1);
+
 coet2 = new Coets("LDSFJA32", 6);
-var propulsors2;
+let propulsors2: any;
 propulsors2 = new Propulsor([30, 40, 50, 50, 30, 10], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]);
 coet2.addPropulsor(propulsors2);
-llistaCoets.push(coet2);
+llistaCoets.push(coet2);*/
 console.log(llistaCoets);
 var result = "";
 var i;
-/*
-function crear(numero){
+var numPropulsors;
+function crear() {
     var codi = prompt("Codi del coet:");
-    var numPropulsors = prompt("Introdueix el nombre de propulsors de "+ codi + ":");
-        if(codi == null||numPropulsors == null){
-        let errorClass = <HTMLInputElement>document.getElementById("resultat");
-        errorClass.innerHTML = "Sisplau, revisa els valors introduïts."
-
-        }else{
-         let coet = "coet"+numero; ///////////////////////Aquí és on falla. Al passar-ho de Javascript a Typescript, m'ho escriu com coet_1 i no com coet1. (Perquè falli,cal afegir a la funció d'onclick a l'HTML el valor que li passem)
-        coet=new Coets(codi,parseInt(numPropulsors));
+    numPropulsors = prompt("Introdueix el nombre de propulsors de " + codi + ":");
+    if (codi == null || numPropulsors == null) {
+        var errorClass = document.getElementById("resultat");
+        errorClass.innerHTML = "Sisplau, revisa els valors introduïts.";
+    }
+    else {
+        coet = new Coets(codi, parseInt(numPropulsors));
         llistaCoets.push(coet);
         console.log(coet);
         crearPropulsors();
+    }
+    function crearPropulsors() {
+        var coetEspecific = llistaCoets[(llistaCoets.length - 1)];
+        var maxPot = [];
+        for (i = 0; i < parseInt(numPropulsors); i++) {
+            var maxPotEach = void 0;
+            var maxPotString = prompt("Introdueix la potència màxima del propulsor " + (i + 1) + " :");
+            maxPotEach = parseInt(maxPotString);
+            maxPot.push(maxPotEach);
         }
-
-
-function crearPropulsors(){ //recorre bucle per saber al coet que correspon (cal pasar una variable tipo codi)
-    let coetEspecific = llistaCoets[(llistaCoets.length-1)];
-    let maxPot =[];
-    for(i=0;i<parseInt(numPropulsors);i++){
-        let maxPotEach:number;
-        maxPotEach = parseInt(prompt("Introdueix la potència màxima del propulsor "+ (i+1)+ " :"));
-        maxPot.push(maxPotEach);
+        var currentPot = [];
+        for (i = 0; i < parseInt(numPropulsors); i++) {
+            currentPot.push(0);
+        }
+        var minPot = [];
+        for (i = 0; i < parseInt(numPropulsors); i++) {
+            minPot.push(0);
+        }
+        coetEspecific.addPropulsor(new Propulsor(maxPot, currentPot, minPot));
     }
-
-    let currentPot=[];
-    for(i=0;i<parseInt(numPropulsors);i++){
-        currentPot.push(0);
-    }
-    let minPot=[];
-    for(i=0;i<parseInt(numPropulsors);i++){
-        minPot.push(0);
-    }
-    coetEspecific.addPropulsor(new Propulsor(maxPot,currentPot,minPot));
+    console.log(llistaCoets);
 }
-console.log(llistaCoets);
-}
- */
 function infoMaxPot() {
     var result = "";
     var j;
@@ -76,22 +73,23 @@ function info() {
     }
     infoMaxPot();
 }
-function accelerar1() {
-    coet1.accelerar();
+function clean() {
+    document.getElementById("resultat").innerHTML = "";
+    document.getElementById("resultatPotencia").innerHTML = "";
+    document.getElementById("resultatPotenciaTots").innerHTML = "";
 }
-function accelerar2() {
-    coet2.accelerar();
+function accelerar(positionArray) {
+    clean();
+    coet = llistaCoets[positionArray];
+    document.getElementById("resultatPotencia").innerHTML = coet.accelerar();
 }
-function frenar1() {
-    coet1.frenar();
+function frenar(positionArray) {
+    clean();
+    coet = llistaCoets[positionArray];
+    document.getElementById("resultatPotencia").innerHTML = coet.frenar();
 }
-function frenar2() {
-    coet2.frenar();
+function informacio(positionArray) {
+    clean();
+    coet = llistaCoets[positionArray];
+    document.getElementById("resultatPotencia").innerHTML = coet.veureInfo();
 }
-function informacio1() {
-    coet1.veureInfo();
-}
-function informacio2() {
-    coet2.veureInfo();
-}
-// cal agafar per l'id el num del  coet
